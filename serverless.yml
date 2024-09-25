@@ -1,0 +1,36 @@
+service: itunes-api-app
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-central-1
+  stage: production
+  environment:
+    AWS_REGION_CODE: eu-central-1
+    AWS_ACCOUNT_ID: ${env:AWS_ACCOUNT_ID}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:PutItem"
+        - "dynamodb:GetItem"
+        - "dynamodb:Query"
+        - "dynamodb:Scan"
+      Resource: "arn:aws:dynamodb:eu-central-1:${env:AWS_ACCOUNT_ID}:table/ItunesResults"
+
+    
+package:
+  individually: true
+  patterns:
+    - 'node_modules/**'
+    - '!node_modules/aws-sdk/**' 
+    - '!test/**'
+    - '!.git/**'
+    - 'dist/**'
+
+functions:
+  app:
+    handler: dist/main.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: any
