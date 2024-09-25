@@ -34,5 +34,5 @@ export class ItunesSearchDto {
 
   @IsBoolean()
   @IsOptional()
-  explicit?: boolean;
+  explicit?: string;
 }

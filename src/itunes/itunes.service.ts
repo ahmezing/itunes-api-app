@@ -3,6 +3,7 @@ import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb';
 import { ItunesSearchDto } from './dto/itunes-search.dto';
 import axios, { AxiosError } from 'axios';
 import { dynamoDbClient } from '../config/aws.config';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class ItunesService {
@@ -47,10 +48,15 @@ export class ItunesService {
   private async storeResults(results: any) {
     try {
       for (const item of results.results) {
-        const params = {
-          TableName: 'ItunesResults',
-          Item: item,
-        };
+        const itemWithId = {
+            ...item,
+            id: uuidv4(),
+          };
+    
+          const params = {
+            TableName: 'ItunesResults',
+            Item: itemWithId,
+          };
         await this.dynamoDb.send(new PutCommand(params));
       }
     } catch (error) {
