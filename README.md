@@ -54,11 +54,10 @@ The iTunes API App is a backend service built with Nest.js. It allows for queryi
       ```bash
       aws dynamodb create-table \
         --table-name ItunesResults \
-        --attribute-definitions AttributeName=trackId,AttributeType=S \
-        --key-schema AttributeName=trackId,KeyType=HASH \
+        --attribute-definitions AttributeName=id,AttributeType=S \
+        --key-schema AttributeName=id,KeyType=HASH \
         --billing-mode PAY_PER_REQUEST
       ```
-    - Make sure the table name matches the `DYNAMODB_TABLE_NAME` environment variable in the next step.
     - **Note**: Ensure the IAM user configured in your AWS CLI has permissions to create and access DynamoDB tables. This typically involves having the `AmazonDynamoDBFullAccess` policy attached to your IAM user or role.
 
 4. **Environment Variables**
