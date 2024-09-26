@@ -23,7 +23,7 @@ The iTunes API App is a backend service built with Nest.js. It allows for queryi
 
 ### Prerequisites
 - **Node.js** (v20+)
-- **npm** (v6+)
+- **npm** (v8+)
 - **AWS CLI**: The AWS Command Line Interface must be installed and configured with an AWS account. This project utilizes AWS services like Lambda and DynamoDB, so having the AWS CLI configured is essential.
     - If you haven't already, create an AWS account and an IAM user with the required permissions. Then, configure the AWS CLI with the credentials of this IAM user. Follow the official AWS guide for [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html).
 - **Nest CLI**: Install the Nest.js CLI globally:
@@ -105,7 +105,7 @@ The iTunes API App is a backend service built with Nest.js. It allows for queryi
 - **Search iTunes**: `GET /search`
   - Query Parameters:
     - **term** (required): The search term (e.g., `jack+johnson`).
-    - **country** (required): The two-letter country code for the iTunes store (e.g., `US`).
+    - **country** (optional): The two-letter country code for the iTunes store (e.g., `US`).
     - **media** (optional): The media type to search for (e.g., `movie`, `podcast`, `music`, `audiobook`, `tvShow`, etc.). Default is `all`.
     - **entity** (optional): The type of results relative to the media type (e.g., `musicArtist`, `album`, `podcastAuthor`, etc.).
     - **attribute** (optional): The attribute to search for (e.g., `artistTerm`, `albumTerm`, `songTerm`, `titleTerm`, etc.).
